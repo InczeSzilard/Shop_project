@@ -36,10 +36,25 @@ namespace Lab5_Window
                 Product p = db.Products.Find(productId);
                 if (p != null)
                 {
+                    // the category name is saved in the history too
+                    string catName = "";
+                    Category cat = db.Categories.Find(p.CategoryId);
+                    if (cat != null)
+                        catName = cat.Name;
+
+                    SaleHistory h = new SaleHistory();
+                    h.ProductId = p.Id;
+                    h.ProductName = p.Name;
+                    h.CategoryName = catName;
+                    h.Quantity = amount;
+                    h.SoldAt = DateTime.Now;
+                    db.SaleHistories.Add(h);
+
                     p.Quantity = p.Quantity - amount;
                     if (p.Quantity <= 0)
                         db.Products.Remove(p);   // quantity 0: delete the product
-                    db.SaveChanges();
+
+                    db.SaveChanges();            // saves the sale and the new quantity together
                 }
             }
             Invoke(new MethodInvoker(Close));

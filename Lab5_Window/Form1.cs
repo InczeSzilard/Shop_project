@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Lab5_Window
 {
@@ -31,6 +33,12 @@ namespace Lab5_Window
 
             existingProductToolStripMenuItem.Click -= existingProductToolStripMenuItem_Click;
             existingProductToolStripMenuItem.Click += existingProductToolStripMenuItem_Click;
+
+            categoriesToolStripMenuItem.Click -= categoriesToolStripMenuItem_Click;
+            categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
+
+            salesHistoryToolStripMenuItem.Click -= salesHistoryToolStripMenuItem_Click;
+            salesHistoryToolStripMenuItem.Click += salesHistoryToolStripMenuItem_Click;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -60,26 +68,54 @@ namespace Lab5_Window
         // Runs on the thread pool, not the UI thread
         private void ReadProductsFromDatabase()
         {
-            using (StoreDbContext db = new StoreDbContext())
+            try
             {
-                string f = currentFilter;
-                var res = from p in db.Products
-                          where f == "" || p.Name.Contains(f)
-                          orderby p.Id
-                          select p;
-                loadedProducts = res.ToList();
-            }
+                StoreDbContext.CreateTables();
 
-            // notify the GUI thread
-            Invoke(new MethodInvoker(ShowProducts));
+                using (StoreDbContext db = new StoreDbContext())
+                {
+                    string f = currentFilter;
+                    var res = from p in db.Products
+                              where f == "" || p.Name.Contains(f)
+                              orderby p.Id
+                              select p;
+                    loadedProducts = res.ToList();
+
+                    // find the category name for every product
+                    List<Category> cats = (from c in db.Categories select c).ToList();
+
+                    foreach (Product prod in loadedProducts)
+                    {
+                        var names = from cat in cats
+                                    where cat.Id == prod.CategoryId
+                                    select cat.Name;
+                        prod.CategoryName = names.FirstOrDefault() ?? "";
+                    }
+                }
+
+                // notify the GUI thread
+                Invoke(new MethodInvoker(ShowProducts));
+            }
+            catch (Exception ex)
+            {
+                Exception inner = ex;
+                while (inner.InnerException != null)
+                    inner = inner.InnerException;
+
+                MessageBox.Show(inner.GetType().Name + ":\n" + inner.Message);
+            }
         }
 
-        // Runs on the UI thread
-        private void ShowProducts()
+
+// Runs on the UI thread
+private void ShowProducts()
         {
             dataGridView1.DataSource = loadedProducts;
-        }
 
+            if (dataGridView1.Columns["CategoryId"] != null)
+                dataGridView1.Columns["CategoryId"].Visible = false;
+        }
+        
         private void newProductToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             AddProduct form = new AddProduct();
@@ -119,6 +155,17 @@ namespace Lab5_Window
             AddQuantity form = new AddQuantity();
             form.ShowDialog();
             LoadProducts(txtSearch.Text);
+        }
+        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CategoriesForm form = new CategoriesForm();
+            form.ShowDialog();
+            LoadProducts(txtSearch.Text);
+        }
+        private void salesHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SallesHistory form = new SallesHistory();
+            form.ShowDialog();
         }
     }
 }

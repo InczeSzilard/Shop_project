@@ -38,6 +38,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +50,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addProductsToolStripMenuItem,
             this.sellProductsToolStripMenuItem,
-            this.searchToolStripMenuItem});
+            this.searchToolStripMenuItem,
+            this.categoriesToolStripMenuItem,
+            this.salesHistoryToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(996, 28);
@@ -61,7 +65,7 @@
             this.newProductToolStripMenuItem,
             this.existingProductToolStripMenuItem});
             this.addProductsToolStripMenuItem.Name = "addProductsToolStripMenuItem";
-            this.addProductsToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
+            this.addProductsToolStripMenuItem.Size = new System.Drawing.Size(112, 26);
             this.addProductsToolStripMenuItem.Text = "Add Products";
             // 
             // newProductToolStripMenuItem
@@ -80,13 +84,13 @@
             // sellProductsToolStripMenuItem
             // 
             this.sellProductsToolStripMenuItem.Name = "sellProductsToolStripMenuItem";
-            this.sellProductsToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
+            this.sellProductsToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
             this.sellProductsToolStripMenuItem.Text = "Sell Products";
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
             this.searchToolStripMenuItem.Text = "Search";
             // 
             // dataGridView1
@@ -126,6 +130,18 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             // 
+            // categoriesToolStripMenuItem
+            // 
+            this.categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
+            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(94, 26);
+            this.categoriesToolStripMenuItem.Text = "Categories";
+            // 
+            // salesHistoryToolStripMenuItem
+            // 
+            this.salesHistoryToolStripMenuItem.Name = "salesHistoryToolStripMenuItem";
+            this.salesHistoryToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
+            this.salesHistoryToolStripMenuItem.Text = "Sales History";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -160,6 +176,8 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.ToolStripMenuItem newProductToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem existingProductToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem categoriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salesHistoryToolStripMenuItem;
     }
 }
 

@@ -39,6 +39,8 @@
             this.dtpEntry = new System.Windows.Forms.DateTimePicker();
             this.dtpExpiry = new System.Windows.Forms.DateTimePicker();
             this.numQuantity = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +59,6 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(326, 22);
             this.txtName.TabIndex = 1;
-           
             // 
             // label2
             // 
@@ -97,7 +98,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(245, 311);
+            this.btnSave.Location = new System.Drawing.Point(508, 311);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(139, 42);
             this.btnSave.TabIndex = 6;
@@ -128,16 +129,35 @@
             // 
             // numQuantity
             // 
-            this.numQuantity.Location = new System.Drawing.Point(106, 244);
+            this.numQuantity.Location = new System.Drawing.Point(127, 246);
             this.numQuantity.Name = "numQuantity";
             this.numQuantity.Size = new System.Drawing.Size(125, 22);
             this.numQuantity.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(32, 305);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 16);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Category:";
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Location = new System.Drawing.Point(103, 305);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(180, 24);
+            this.cmbCategory.TabIndex = 12;
             // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 365);
+            this.Controls.Add(this.cmbCategory);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.numQuantity);
             this.Controls.Add(this.dtpExpiry);
             this.Controls.Add(this.dtpEntry);
@@ -170,5 +190,7 @@
         private System.Windows.Forms.DateTimePicker dtpEntry;
         private System.Windows.Forms.DateTimePicker dtpExpiry;
         private System.Windows.Forms.NumericUpDown numQuantity;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbCategory;
     }
 }
